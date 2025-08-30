@@ -9,7 +9,7 @@ const alexBrush = Alex_Brush({
   weight: "400",
 });
 
-export default function NavBar() {
+export default function Nav() {
   const { setIsOpen, cartItems } = useCart();
 
   return (
