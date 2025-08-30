@@ -1,39 +1,45 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FadeCard({ product }) {
   const [hovered, setHovered] = useState(false);
 
-  const Cover2 =
-    "https://images-api.printify.com/mockup/6896531d07d2b55d81039730/12100/92571/more-of-me-poodle-tee.jpg?camera_label=back";
-  const Cover1 =
-    "https://images-api.printify.com/mockup/6896531d07d2b55d81039730/12100/92570/more-of-me-poodle-tee.jpg?camera_label=front";
-
   return (
-    <div
-      className="relative w-full h-full cursor-pointer overflow-hidden rounded-2xl"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Back image */}
-      <Image
-        src={Cover1}
-        alt="Front"
-        fill
-        className="object-contain transition-opacity duration-500 ease-in-out"
-        style={{ opacity: hovered ? 0 : 1 }}
-        priority
-      />
+    <div className="flex flex-col items-center w-full h-full">
+      {/* Image wrapper with Link */}
+      <Link
+        href={`/products/${product?.id}`}
+        className="relative w-full h-80 cursor-pointer overflow-hidden rounded-2xl"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Front image */}
+        <Image
+          src={product?.cover1}
+          alt="Front"
+          fill
+          className="object-contain transition-opacity duration-500 ease-in-out"
+          style={{ opacity: hovered ? 0 : 1 }}
+          priority
+        />
 
-      {/* Front image */}
-      <Image
-        src={Cover2}
-        alt="Back"
-        fill
-        className="object-contain transition-opacity duration-500 ease-in-out"
-        style={{ opacity: hovered ? 1 : 0 }}
-      />
+        {/* Back image */}
+        <Image
+          src={product?.cover2}
+          alt="Back"
+          fill
+          className="object-contain transition-opacity duration-500 ease-in-out"
+          style={{ opacity: hovered ? 1 : 0 }}
+        />
+      </Link>
+
+      {/* Text under image */}
+      <p className="mt-4 text-center text-lg font-semibold text-gray-800">
+        {product?.name}
+      </p>
+      <p className="text-gray-600">${product?.price}</p>
     </div>
   );
 }
