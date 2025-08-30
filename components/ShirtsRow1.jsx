@@ -12,7 +12,7 @@ export default function ShirtsRow1 ({ tShirts, collection }) {
 
 
     return (
-        <div className="flex flex-col h-[70vh] bg-white items-center justify-center">
+        <div className="flex flex-col h-[70vh] bg-white items-center justify-between pt-8 pb-12">
 
             <h1 className={`${alexBrush.className} text-amber-950 text-6xl`}> {collection} </h1>
 

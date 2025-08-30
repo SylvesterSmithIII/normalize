@@ -36,7 +36,7 @@ export default function FadeCard({ product }) {
       </Link>
 
       {/* Text under image */}
-      <p className="mt-4 text-center text-lg font-semibold text-gray-800">
+      <p className="text-center text-lg font-semibold text-gray-800">
         {product?.name}
       </p>
       <p className="text-gray-600">${product?.price}</p>

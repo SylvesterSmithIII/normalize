@@ -5,6 +5,7 @@ import { getAllProducts } from "@/libs/getProducst";
 import Link from "next/link";
 import Row2 from "../images/Row2.PNG";
 import ShirtsRow1 from "./ShirtsRow1";
+import ImageRow from "./ImageRow";
 
 
 
@@ -27,8 +28,8 @@ export default async function FirstRow() {
 
     const firstRowTShirts = [
       {
-        cover1: "https://images-api.printify.com/mockup/689641b6da39ea6b4a025c44/12100/92570/my-own-muse-cheetah-tee.jpg?camera_label=front",
-        cover2: "https://images-api.printify.com/mockup/689641b6da39ea6b4a025c44/12100/92571/my-own-muse-cheetah-tee.jpg?camera_label=back",
+        cover1: "https://images-api.printify.com/mockup/689641b6da39ea6b4a025c44/11986/92570/my-own-muse-cheetah-tee.jpg?camera_label=front",
+        cover2: "https://images-api.printify.com/mockup/689641b6da39ea6b4a025c44/11986/92571/my-own-muse-cheetah-tee.jpg?camera_label=back",
         name: "My Own Muse Cheetah Tee",
         price: "20.00",
         id: "689641b6da39ea6b4a025c44"
@@ -79,11 +80,7 @@ export default async function FirstRow() {
 
         </div>
        
-        <div className="bg-white">
-            <div className="flex h-[90vh]">
-                <Image src={Row2} alt="Row2" className="object-cover w-full h-full"/>
-            </div>
-        </div>
+        <ImageRow />
 
 <div className="flex flex-col items-center justify-center h-[75vh] ">
 {/* <h1 >SHOP FEATURED PRODUCTS</h1> */}
