@@ -79,7 +79,7 @@ export default function ProductPageComp({ product }) {
 
   return (
     <>
-    <div className={`flex p-8 gap-8 bg-white ${lato.className}`}>
+    <div className={`flex p-8 gap-8 bg-white ${lato.className} min-h-screen`}>
       {/* Left column: main image */}
       <div className="flex-1 relative h-[80vh]">
         <Image
@@ -174,7 +174,7 @@ export default function ProductPageComp({ product }) {
         {/* Description dropdown */}
         <details className="mt-4">
           <summary className="cursor-pointer font-medium">Description</summary>
-          <p className="mt-2 text-gray-600">{product.description}</p>
+          <p className="mt-2 text-gray-600" dangerouslySetInnerHTML={{ __html: product.description }}></p>
         </details>
       </div>
     </div>

@@ -3,6 +3,7 @@ import HeroPhoto from "../images/HeroPhoto.JPG";
 import Image from "next/image";
 import FirstRow from "@/components/FirstRow";
 import CartDrawer from "@/components/CartDrawer";
+import Link from 'next/link'
 
 const alexBrush = Alex_Brush({
   subsets: ["latin"],
@@ -47,9 +48,11 @@ export default function Home() {
             </div>
 
             <div className="mt-10">
-              <button className="flex rounded-full bg-white text-amber-950 font-bold px-12 py-2">
-                BROWSE COLLECTION
-              </button>
+              <Link href="/shop">
+                <button className="flex rounded-full bg-white text-amber-950 font-bold px-12 py-2 cursor-pointer">
+                  BROWSE COLLECTION
+                </button>
+              </Link>
             </div>
           </div>
 
