@@ -1,4 +1,4 @@
-import Nav from "@/components/nav";
+import Nav from "@/components/Nav";
 import { Alex_Brush } from "next/font/google";
 import HeroPhoto from "../images/HeroPhoto.JPG";
 import Image from "next/image";

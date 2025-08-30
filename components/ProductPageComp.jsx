@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Lato } from "next/font/google";
-import Nav from "@/components/nav";
+import Nav from "@/components/Nav";
 
 const lato = Lato({
   subsets: ["latin"],
