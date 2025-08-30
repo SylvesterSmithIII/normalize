@@ -1,7 +1,6 @@
 import Nav from "@/components/Nav";
 import CartDrawer from "@/components/CartDrawer";
 import { CartProvider } from "@/components/CartContext";
-import BackgroundDots from "@/components/BackgroundBalls";
 
 
 import "./globals.css";
