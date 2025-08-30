@@ -1,8 +1,5 @@
 import Image from "next/image";
-import StockPhoto from "../images/Stock-Photo.jpeg";
-import Cover1 from "../images/Cover1.JPG";
 import Cover2 from "../images/Cover2.JPG";
-import Sec1 from "../images/Subject.png";
 import ItemCard from "./ItemCard";
 import { getAllProducts } from "@/libs/getProducst";
 import Link from "next/link";
