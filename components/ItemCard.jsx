@@ -7,7 +7,7 @@ export default function FadeCard({ product }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div className="flex flex-col items-center w-full h-full relative">
       {/* Image wrapper with Link */}
       <Link
         href={`/products/${product?.id}`}
@@ -36,10 +36,10 @@ export default function FadeCard({ product }) {
       </Link>
 
       {/* Text under image */}
-      <p className="text-center text-lg font-semibold text-gray-800">
+      <p className="text-center text-xs lg:text-lg font-semibold text-gray-800">
         {product?.name}
       </p>
-      <p className="text-gray-600">${product?.price}</p>
+      <p className="text-gray-600 text-xs lg:text-base">${product?.price}</p>
     </div>
   );
 }
