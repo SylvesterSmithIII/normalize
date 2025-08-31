@@ -34,6 +34,7 @@ export default function ProductPageComp({ product }) {
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [mainImage, setMainImage] = useState(imagesByColor[colors[0]][0]);
+  const [hoverImage, setHoverImage] = useState(null);
 
   // Sizes (placeholder, or could map from product.variants)
   const sizes = ["S", "M", "L", "XL"];
@@ -45,6 +46,7 @@ export default function ProductPageComp({ product }) {
   // Update main image when color changes
   useEffect(() => {
     setMainImage(imagesByColor[selectedColor][0]);
+    setHoverImage(null);
   }, [selectedColor]);
 
   // Shared button styles (color + size)
@@ -79,54 +81,35 @@ export default function ProductPageComp({ product }) {
 
   return (
     <>
-    <div className={`flex p-8 gap-8 bg-white ${lato.className} min-h-screen`}>
-      {/* Left column: main image */}
-      <div className="flex-1 relative h-[80vh]">
-        <Image
-          src={mainImage.src}
-          alt="Shirt image"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+   <div className={`flex gap-8 bg-white ${lato.className} min-h-screen`}>
+  {/* Left column: main image + thumbnails */}
+  <div className="flex-1 flex flex-col items-center justify-center">
+    <div className="relative p-8 w-full h-[65vh]">
+      <Image
+        src={(hoverImage || mainImage).src}
+        alt="Shirt image"
+        fill
+        className="object-contain"
+        priority
+      />
+    </div>
 
-      {/* Right column */}
-      <div className="flex-1 flex flex-col gap-4 pt-20">
-        {/* Product name */}
-        <h1 className="text-6xl font-bold">{product.title}</h1>
-
-        {/* Price */}
-        <p className="text-lg text-gray-800">
-          ${(product.variants[0].price / 100).toFixed(2)}
-        </p>
-
-        {/* Color options */}
-        <div className="flex gap-2 mt-12">
-          {colors.map((color) => (
-            <OptionButton
-              key={color}
-              label={color}
-              isSelected={color === selectedColor}
-              onClick={() => setSelectedColor(color)}
-            />
-          ))}
-        </div>
-
-        {/* Thumbnails */}
-      <div className="flex gap-2 overflow-x-auto">
+    {/* Thumbnails under image */}
+<div className="flex w-full gap-4 px-12">
   {imagesByColor[selectedColor].map((img, idx) => (
     <div
       key={idx}
-      className={`relative w-24 h-24 cursor-pointer border-2 border-black transition-opacity
+      className={`relative flex-1 aspect-square cursor-pointer transition-opacity
         ${mainImage?.src === img.src ? "opacity-60" : "hover:opacity-60"}`}
-      onClick={() => setMainImage(img)}
+          onMouseEnter={() => setHoverImage(img)}
+          onMouseLeave={() => setHoverImage(null)}
+          onClick={() => setMainImage(img)}
     >
       <Image
         src={img.src}
         alt={`Variant ${idx}`}
         fill
-        className="object-cover"
+        className="object-cover rounded"
       />
     </div>
   ))}
@@ -134,50 +117,75 @@ export default function ProductPageComp({ product }) {
 
 
 
-        {/* Size options */}
-        <div className="flex gap-2 mt-6">
-          {sizes.map((size) => (
-            <OptionButton
-              key={size}
-              label={size}
-              isSelected={size === selectedSize}
-              onClick={() => setSelectedSize(size)}
-            />
-          ))}
-        </div>
+  </div>
 
-        {/* Quantity selector */}
-        <div className="flex items-center gap-4 mt-6">
-          <button
-            onClick={() => setQuantity(q => Math.max(1, q - 1))}
-            className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white cursor-pointer"
-          >
-            -
-          </button>
-          <span className="text-lg cursor-default">{quantity}</span>
-          <button
-            onClick={() => setQuantity(q => q + 1)}
-            className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white cursor-pointer"
-          >
-            +
-          </button>
-        </div>
+  {/* Right column */}
+  <div className="flex-1 flex flex-col gap-4 pt-20 px-8  bg-gray-100">
+    {/* Product name */}
+    <h1 className="text-6xl font-bold">{product.title}</h1>
 
+    {/* Price */}
+    <p className="text-lg text-gray-800">
+      ${(product.variants[0].price / 100).toFixed(2)}
+    </p>
 
-{/* Add to cart button */}
-<button className="mt-6 px-6 py-3 border-2 border-black  bg-black text-white font-bold hover:bg-white hover:text-black transition-colors cursor-pointer">
-  Add to Cart
-</button>
-
-
-
-        {/* Description dropdown */}
-        <details className="mt-4">
-          <summary className="cursor-pointer font-medium">Description</summary>
-          <p className="mt-2 text-gray-600" dangerouslySetInnerHTML={{ __html: product.description }}></p>
-        </details>
-      </div>
+    {/* Color options */}
+    <div className="flex gap-2 mt-12">
+      {colors.map((color) => (
+        <OptionButton
+          key={color}
+          label={color}
+          isSelected={color === selectedColor}
+          onClick={() => setSelectedColor(color)}
+        />
+      ))}
     </div>
+
+    {/* Size options */}
+    <div className="flex gap-2 mt-6">
+      {sizes.map((size) => (
+        <OptionButton
+          key={size}
+          label={size}
+          isSelected={size === selectedSize}
+          onClick={() => setSelectedSize(size)}
+        />
+      ))}
+    </div>
+
+    {/* Quantity selector */}
+    <div className="flex items-center gap-4 mt-6">
+      <button
+        onClick={() => setQuantity(q => Math.max(1, q - 1))}
+        className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white cursor-pointer"
+      >
+        -
+      </button>
+      <span className="text-lg cursor-default">{quantity}</span>
+      <button
+        onClick={() => setQuantity(q => q + 1)}
+        className="px-4 py-2 border-2 border-black hover:bg-black hover:text-white cursor-pointer"
+      >
+        +
+      </button>
+    </div>
+
+    {/* Add to cart */}
+    <button className="mt-6 mx-8 py-3 border-2 border-black bg-black text-white font-bold hover:bg-white hover:text-black transition-colors cursor-pointer">
+      Add to Cart
+    </button>
+
+    {/* Description */}
+    <details className="mt-4">
+      <summary className="cursor-pointer font-medium">Description</summary>
+      <p
+        className="mt-2 text-gray-600"
+        dangerouslySetInnerHTML={{ __html: product.description }}
+      ></p>
+    </details>
+  </div>
+</div>
+
     </>
     
   );

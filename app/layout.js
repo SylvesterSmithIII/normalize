@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-[#8B4513]">
+      <body className="antialiased bg-white">
         <CartProvider>
           {/* Floating balls background */}
           {/* <BackgroundDots /> */}

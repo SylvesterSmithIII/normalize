@@ -4,6 +4,7 @@ import Image from "next/image";
 import FirstRow from "@/components/FirstRow";
 import CartDrawer from "@/components/CartDrawer";
 import Link from 'next/link'
+import MobileView from "../images/MobileView.jpeg"
 
 const alexBrush = Alex_Brush({
   subsets: ["latin"],
@@ -59,6 +60,27 @@ export default function Home() {
 
         </div>
       </header>
+
+      <div className="lg:hidden h-8" />
+
+    <div className="relative h-screen w-screen lg:hidden">
+      <Image 
+        src={MobileView}
+        alt="Mobile View"
+        fill
+        className="object-cover"
+        priority
+      />
+
+      <button className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-white text-amber-950 text-lg font-bold px-4 py-2 rounded">
+        <Link href="/shop">
+          SHOP NOW
+        </Link>
+      </button>
+
+
+    </div>
+
       
       <FirstRow />
     </div>

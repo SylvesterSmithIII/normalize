@@ -130,7 +130,7 @@ export default async function FirstRow() {
           `
         }} />
 
-         <div className="w-full h-[80vh] flex">
+         <div className="hidden lg:flex w-full h-[80vh]">
 
         
 
