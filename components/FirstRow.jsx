@@ -81,8 +81,8 @@ export default async function FirstRow() {
         id: "68952214a545d9b6950a4022"
       },
       {
-        cover1: "https://images-api.printify.com/mockup/6894f9fb8a6d7e74790c1fb8/12100/92570/choose-to-be-kind-butterfly-tee.jpg?camera_label=front",
-        cover2: "https://images-api.printify.com/mockup/6894f9fb8a6d7e74790c1fb8/12100/92571/choose-to-be-kind-butterfly-tee.jpg?camera_label=back",
+        cover1: "https://images-api.printify.com/mockup/6894f9fb8a6d7e74790c1fb8/11980/92570/choose-to-be-kind-butterfly-tee.jpg?camera_label=front",
+        cover2: "https://images-api.printify.com/mockup/6894f9fb8a6d7e74790c1fb8/11980/92571/choose-to-be-kind-butterfly-tee.jpg?camera_label=back",
         name: "Choose To Be Kind Butterfly Tee",
         price: "20.00",
         id: "6894f9fb8a6d7e74790c1fb8"
