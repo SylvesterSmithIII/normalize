@@ -94,17 +94,31 @@ export async function POST(req) {
       },
     ];
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items,
-      mode: "payment",
-      success_url: `${req.headers.get("origin")}/success`,
-      cancel_url: `${req.headers.get("origin")}/cart`,
-      shipping_address_collection: {
-        allowed_countries: ["US"],
+  const session = await stripe.checkout.sessions.create({
+  payment_method_types: ["card"],
+  line_items: cartItems.map(item => ({
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: item.title,
+        images: [item.image],
       },
-      shipping_options,
-    });
+      unit_amount: item.price,
+    },
+    quantity: item.quantity,
+  })),
+  mode: "payment",
+  success_url: `${req.headers.get("origin")}/success`,
+  cancel_url: `${req.headers.get("origin")}/cart`,
+  metadata: {
+    items: JSON.stringify(cartItems),
+    shippingMethod: shippingMethod,
+  },
+  shipping_address_collection: {
+    allowed_countries: ["US"],
+  },
+});
+
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
