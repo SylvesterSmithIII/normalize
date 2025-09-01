@@ -93,7 +93,6 @@ export async function getOneProduct(id) {
     product.variants = product.variants.filter((variant) => variant.is_enabled && variant.is_available)
 
     delete product.tags
-    delete product.options
 
     return product
 }

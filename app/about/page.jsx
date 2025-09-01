@@ -51,37 +51,41 @@ export default function About() {
         </div>
       </header>
            
+<div className="min-h-[80vh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-12 py-6 gap-12 bg-white text-center">
 
-            <div className="h-[80vh] flex flex-col justify-center items-center p-6 lg:p-12 gap-12 bg-white text-center">
+  {/* OUR STORY */}
+  <div className="w-full max-w-4xl flex flex-col items-center gap-4">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl text-amber-300 font-bold break-words">
+      OUR STORY
+    </h1>
+    <p className="text-sm sm:text-base md:text-lg lg:text-2xl leading-relaxed break-words">
+      Let's Normalize started as a simple idea: what if we made it easier to talk about the things everyone feels,
+      but nobody says out loud? From daily struggles to deep emotions, we believe that nothing about being human
+      should feel shameful or hidden.
+    </p>
+    <p className="text-sm sm:text-base md:text-lg lg:text-2xl leading-relaxed break-words">
+      What began as art and designs on T-shirts grew into a movement... creating clothing, content, and community
+      spaces where people feel seen, safe, and understood.
+    </p>
+  </div>
 
-                {/* OUR STORY */}
-                <div className="max-w-4xl flex flex-col items-center gap-4">
-                    <h1 className="text-4xl lg:text-7xl text-amber-300 font-bold">OUR STORY</h1>
-                    <p className="text-base lg:text-2xl">
-                    Let's Normalize started as a simple idea: what if we made it easier to talk about the things everyone feels,
-                    but nobody says out loud? From daily struggles to deep emotions, we believe that nothing about being human
-                    should feel shameful or hidden.
-                    </p>
-                    <p className="text-base lg:text-2xl">
-                    What began as art and designs on T-shirts grew into a movement... creating clothing, content, and community
-                    spaces where people feel seen, safe, and understood.
-                    </p>
-                </div>
+  {/* MISSION STATEMENT */}
+  <div className="w-full max-w-4xl flex flex-col items-center gap-4">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl text-amber-300 font-bold break-words">
+      MISSION STATEMENT
+    </h1>
+    <p className="text-sm sm:text-base md:text-lg lg:text-2xl leading-relaxed break-words">
+      Our mission is to break the stigma around real feelings and real conversations. We're here to normalize the
+      unspoken, spark empathy, and remind people that they're not alone.
+    </p>
+    <p className="text-sm sm:text-base md:text-lg lg:text-2xl leading-relaxed break-words">
+      Through meaningful designs and an honest community, we're building a brand that's more than clothes...
+      it's a safe space you can wear.
+    </p>
+  </div>
 
-                {/* MISSION STATEMENT */}
-                <div className="max-w-4xl flex flex-col items-center gap-4">
-                    <h1 className="text-4xl lg:text-7xl text-amber-300 font-bold">MISSION STATEMENT</h1>
-                    <p className="text-base lg:text-2xl">
-                    Our mission is to break the stigma around real feelings and real conversations. We're here to normalize the
-                    unspoken, spark empathy, and remind people that they're not alone.
-                    </p>
-                    <p className="text-base lg:text-2xl">
-                    Through meaningful designs and an honest community, we're building a brand that's more than clothes...
-                    it's a safe space you can wear.
-                    </p>
-                </div>
+</div>
 
-            </div>
 
 
            <div

@@ -16,7 +16,7 @@ export default function ShirtsRow1({ tShirts, collection, style, className }) {
         {collection}
       </h1>
 
-      <div className="flex flex-1 items-start flex-wrap lg:flex-nowrap justify-center lg:justify-evenly w-full gap-4 px-4">
+      <div className="flex flex-1 items-start flex-wrap justify-center lg:justify-evenly w-full gap-4 px-4">
         {tShirts.map((product) => (
           <div
             key={product.id}

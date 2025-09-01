@@ -1,7 +1,4 @@
-import Nav from "@/components/Nav";
-import CartDrawer from "@/components/CartDrawer";
-import { CartProvider } from "@/components/CartContext";
-
+import RootLayoutClientWrapper from "./RootLayoutClientWrapper";
 
 import "./globals.css";
 
@@ -16,14 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased bg-white">
-        <CartProvider>
           {/* Floating balls background */}
           {/* <BackgroundDots /> */}
+          <RootLayoutClientWrapper>{children}</RootLayoutClientWrapper>
 
-          <Nav className="mb-4 text-white z-20 " />
-          <CartDrawer />
-          {children}
-        </CartProvider>
       </body>
     </html>
   );

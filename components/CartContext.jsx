@@ -10,29 +10,38 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addToCart = (item) => {
-    setCartItems(prev => {
-      const existing = prev.find(i => i.id === item.id && i.size === item.size);
-      if (existing) {
-        return prev.map(i =>
-          i.id === item.id && i.size === item.size ? { ...i, quantity: i.quantity + item.quantity } : i
-        );
-      }
-      return [...prev, item];
-    });
-  };
-
-  const removeFromCart = (id, size) => {
-    setCartItems(prev => prev.filter(i => i.id !== id || i.size !== size));
-  };
-
-  const updateQuantity = (id, size, quantity) => {
-    setCartItems(prev =>
-      prev.map(i =>
-        i.id === id && i.size === size ? { ...i, quantity } : i
-      )
+ const addToCart = (item) => {
+  setCartItems(prev => {
+    const existing = prev.find(
+      i => i.variantId === item.variantId && i.size === item.size
     );
-  };
+
+    if (existing) {
+      return prev.map(i =>
+        i.variantId === item.variantId && i.size === item.size
+          ? { ...i, quantity: i.quantity + item.quantity }
+          : i
+      );
+    }
+
+    return [...prev, item];
+  });
+};
+
+
+
+ const removeFromCart = (variantId, size) => {
+  setCartItems(prev => prev.filter(i => i.variantId !== variantId || i.size !== size));
+};
+
+const updateQuantity = (variantId, size, quantity) => {
+  setCartItems(prev =>
+    prev.map(i =>
+      i.variantId === variantId && i.size === size ? { ...i, quantity } : i
+    )
+  );
+};
+
 
   return (
     <CartContext.Provider value={{
