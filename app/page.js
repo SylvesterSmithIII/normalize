@@ -44,7 +44,7 @@ export default function Home() {
 
             <div className="flex flex-col items-center text-amber-950 font-bold text-4xl lg:text-8xl ">
               <h1>BE WHO YOU <span className="lg:hidden">ARE.</span></h1>
-              <h1><span className="hidden lg:block">ARE.</span> SAY HOW <span className="lg:hidden">YOU FEEL.</span></h1>
+              <h1><span className="hidden lg:inline">ARE.</span> SAY HOW <span className="lg:hidden">YOU FEEL.</span></h1>
               <h1 className="hidden lg:block">YOU FEEL.</h1>
 
             </div>

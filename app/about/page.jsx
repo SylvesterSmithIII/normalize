@@ -172,19 +172,22 @@ export default function About() {
 
 </div>
 
-        <div className="h-[10vh] lg:h-[20vh] flex flex-col justify-evenly items-center lg:p-6 bg-white ">
+       <div className="flex flex-col justify-evenly items-center p-4 bg-white min-h-[10vh] lg:min-h-[20vh]">
+  <h1
+    className={`${alexBrush.className} text-[clamp(1.75rem,5vw,3rem)] text-yellow-300 scale-x-130`}
+  >
+    What We Stand For
+  </h1>
 
-            <h1 className={`${alexBrush.className} text-4xl lg:text-6xl text-yellow-300 scale-x-130`}>What We Stand For</h1>
+  <div className="flex gap-4 md:gap-12 text-[clamp(0.75rem,3vw,2.5rem)] text-amber-950 font-bold flex-wrap justify-center">
+    <p>COMMUNITY</p>
+    <p>&sdot;</p>
+    <p>HOPE</p>
+    <p>&sdot;</p>
+    <p>INCLUSIVITY</p>
+  </div>
+</div>
 
-            <div className="flex text-xs lg:text-6xl gap-12 text-amber-950 font-bold">
-                <p>COMMUNITY</p>
-                <p>&sdot;</p>
-                <p>HOPE</p>
-                <p>&sdot;</p>
-                <p>INCLUSIVITY</p>
-            </div>
-
-        </div>
 
         <div className="h-[7vh] lg:h-[10vh] bg-amber-950 flex justify-center items-center gap-12 p-2 lg:p-4">
 

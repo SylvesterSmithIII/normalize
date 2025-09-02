@@ -43,7 +43,7 @@ export default function ImageRow() {
       </div>
     </div>
 
-    <div className="relative w-full h-[35vh]">
+    <div className="relative w-full h-[35vh] lg:hidden">
       <Image
         src={Mobile2}
         alt="Mobile 2"
