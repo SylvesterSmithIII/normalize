@@ -12,7 +12,7 @@ const alexBrush = Alex_Brush({
 });
 
 export default function Nav() {
-  const { cartItems, setIsOpen } = useCart(); // <-- added setIsOpen
+  const { cartItems, setIsOpen } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

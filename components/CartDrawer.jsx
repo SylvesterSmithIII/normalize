@@ -48,7 +48,10 @@ export default function CartDrawer() {
             title: i.title,
             quantity: i.quantity,
             price: i.price,
-            size: i.size
+            size: i.size,
+            // 🔑 include Printify product + variant IDs
+            printifyProductId: i.printifyProductId,
+            printifyVariantId: i.printifyVariantId,
           })),
           shippingMethod,
           shippingCost: shipping,
