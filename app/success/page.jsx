@@ -1,13 +1,10 @@
-// app/success/page.js
+"use client";
 
-'use client';
-
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-export default function SuccessPage() {
+function SuccessPageContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId"); // Stripe Checkout Session ID
   const email = searchParams.get("email");
@@ -81,5 +78,13 @@ export default function SuccessPage() {
         <p className="mt-8 text-gray-600">If you have any questions, please contact support.</p>
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SuccessPageContent />
+    </Suspense>
   );
 }
