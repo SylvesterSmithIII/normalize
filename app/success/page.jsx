@@ -1,5 +1,6 @@
 // app/success/page.js
 
+'use client';
 
 
 import React, { useEffect, useState } from "react";
