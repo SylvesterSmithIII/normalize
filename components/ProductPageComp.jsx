@@ -45,16 +45,21 @@ export default function ProductPageComp({ product }) {
 
   if (!variant) return alert("Variant unavailable");
 
-    addToCart({
+    const cartItem = {
       productId: product.id,
-      title: product.title,
+      productTitle: product.title,
       variantId: variant.id,
+      variantTitle: variant.title,
       color: selectedColor,
       size: selectedSize,
       quantity,
       price: variant.price,
+      cost: variant.cost,
       image: mainImage.src,
-    });
+      description: product.description,
+    };
+
+    addToCart(cartItem);
   };
 
   // Find selected variant
@@ -89,16 +94,6 @@ export default function ProductPageComp({ product }) {
       </span>
     </button>
   );
-
-  // Build cart item to send to Printify / Stripe
-  const cartItem = selectedVariant ? {
-    id: selectedVariant.id,
-    title: selectedVariant.title,
-    price: selectedVariant.price,
-    cost: selectedVariant.cost,
-    quantity,
-    image: mainImage.src,
-  } : null;
 
   return (
     <div className={`flex flex-col lg:flex-row gap-8 bg-white ${lato.className} min-h-screen`}>

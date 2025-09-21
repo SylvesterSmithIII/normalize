@@ -114,21 +114,7 @@ export default async function FirstRow() {
        
         <ImageRow />
 
-        <ShirtsRow1 tShirts={secondRowTShirts} collection={"The Self Love Club"} className="bg-[#FFF7E9]" style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              to right,
-              #000 0px,
-              #000 1px,
-              transparent 1px,
-              transparent 7px,
-              #000 7px,
-              #000 8px,
-              transparent 8px,
-              transparent 100px
-            )
-          `
-        }} />
+        <ShirtsRow1 tShirts={secondRowTShirts} collection={"The Self Love Club"} className="bg-white" style={{}} />
 
          <div className="hidden lg:flex w-full h-[80vh]">
 

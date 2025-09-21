@@ -37,12 +37,12 @@ export default function Home() {
           
           <div className="flex-1 flex flex-col justify-end pb-8 lg:pb-0 lg:justify-center items-center gap-4">
 
-            <div className={`flex flex-col items-center text-yellow-300 ${alexBrush.className} text-3xl lg:text-6xl`}>
+            <div className={`flex flex-col items-center text-white ${alexBrush.className} text-3xl lg:text-6xl`}>
               <h4>Let&apos;s Celebrate <span className="lg:hidden">Our Differences</span> </h4>
               <h4 className="hidden lg:block">Our Differences</h4>
             </div>
 
-            <div className="flex flex-col items-center text-amber-950 font-bold text-4xl lg:text-8xl ">
+            <div className="flex flex-col items-center text-white font-bold text-4xl lg:text-8xl ">
               <h1>BE WHO YOU <span className="lg:hidden">ARE.</span></h1>
               <h1><span className="hidden lg:inline">ARE.</span> SAY HOW <span className="lg:hidden">YOU FEEL.</span></h1>
               <h1 className="hidden lg:block">YOU FEEL.</h1>

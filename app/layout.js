@@ -5,7 +5,7 @@ import "./globals.css";
 // Component to render background balls
 
 export const metadata = {
-  title: "Let's Normalize",
+  title: "The Modern Club",
   description: "e-commerce website",
 };
 

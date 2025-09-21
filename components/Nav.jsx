@@ -37,14 +37,14 @@ export default function Nav() {
       </div>
 
       {/* Center: Logo */}
-      <div className={`text-xl lg:text-4xl font-bold text-black lg:text-white ${alexBrush.className}`}>
-        Lets Normalize
-      </div>
+      <Link href="/blog" className={`text-xl lg:text-4xl font-bold text-black lg:text-white ${alexBrush.className} hover:text-yellow-300 transition`}>
+        Modern Club
+      </Link>
 
       {/* Right: Cart Icon (Mobile) */}
       <button
         onClick={() => setIsOpen(true)} // <-- open drawer instead of checkout
-        className="relative hover:text-yellow-300 transition"
+        className="relative hover:text-yellow-300 transition lg:hidden"
       >
         <ShoppingCart size={28} className="lg:hidden" />
         {cartItems.length > 0 && (
