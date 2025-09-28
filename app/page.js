@@ -1,6 +1,5 @@
 import { Alex_Brush } from "next/font/google";
 import HeroPhoto from "../images/HeroPhoto.JPG";
-import HeroPhoto2 from "../images/HeroPhoto2.jpeg";
 import Image from "next/image";
 import FirstRow from "@/components/FirstRow";
 import CartDrawer from "@/components/CartDrawer";
@@ -23,10 +22,10 @@ export default function Home() {
 
   return (
     <div>
-      <header className="relative w-screen h-[50vh] lg:h-[200vh] flex flex-col">
+      <header className="relative w-screen h-[50vh] lg:h-screen flex flex-col">
         {/* Background Image */}
         <Image
-          src={HeroPhoto2}
+          src={HeroPhoto}
           alt="Hero background"
           fill
           className="object-cover z-0"
@@ -34,7 +33,7 @@ export default function Home() {
         />
 
         {/* All content above background */}
-        {/* <div className="relative z-10 flex flex-col flex-1">
+        <div className="relative z-10 flex flex-col flex-1">
           
           <div className="flex-1 flex flex-col justify-end pb-8 lg:pb-0 lg:justify-center items-center gap-4">
 
@@ -59,7 +58,7 @@ export default function Home() {
             </div>
           </div>
 
-        </div> */}
+        </div>
       </header>
 
       <div className="lg:hidden h-8" />
