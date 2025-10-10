@@ -44,14 +44,17 @@ export default function CartDrawer() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: cartItems.map(i => ({
-            id: i.id,
-            title: i.title,
+            productId: i.productId,
+            productTitle: i.productTitle,
+            variantId: i.variantId,
+            variantTitle: i.variantTitle,
+            color: i.color,
+            size: i.size,
             quantity: i.quantity,
             price: i.price,
-            size: i.size,
-            // 🔑 include Printify product + variant IDs
-            printifyProductId: i.printifyProductId,
-            printifyVariantId: i.printifyVariantId,
+            cost: i.cost,
+            image: i.image,
+            description: i.description,
           })),
           shippingMethod,
           shippingCost: shipping,
@@ -101,25 +104,30 @@ export default function CartDrawer() {
           ) : (
             cartItems.map((item, idx) => (
               <div key={idx} className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium">{item.title}</p>
-                  <p className="text-sm text-gray-500">Size: {item.size}</p>
+                <div className="flex items-center gap-3">
+                  {item.image && (
+                    <img src={item.image} alt={item.productTitle} className="w-14 h-14 object-cover rounded border" />
+                  )}
+                  <div>
+                    <p className="font-medium">{item.productTitle}</p>
+                    <p className="text-sm text-gray-500">Size: {item.size}</p>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => updateQuantity(item.id, item.size, Math.max(1, item.quantity - 1))}
+                    onClick={() => updateQuantity(item.productId, item.size, Math.max(1, item.quantity - 1))}
                     className="px-2 py-1 border-2 border-black rounded-none hover:bg-black hover:text-white"
                   >–</button>
                   <span>{item.quantity}</span>
                   <button
-                    onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
+                    onClick={() => updateQuantity(item.productId, item.size, item.quantity + 1)}
                     className="px-2 py-1 border-2 border-black rounded-none hover:bg-black hover:text-white"
                   >+</button>
                 </div>
 
                 <button
-                  onClick={() => removeFromCart(item.id, item.size)}
+                  onClick={() => removeFromCart(item.productId, item.size)}
                   className="ml-2 text-red-500 font-bold"
                 >
                   ×

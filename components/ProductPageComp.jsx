@@ -58,7 +58,6 @@ export default function ProductPageComp({ product }) {
       image: mainImage.src,
       description: product.description,
     };
-
     addToCart(cartItem);
   };
 

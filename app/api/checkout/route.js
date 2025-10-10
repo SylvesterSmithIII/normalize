@@ -15,18 +15,28 @@ export async function POST(req) {
 
     // Map items for Stripe (attach Printify IDs in metadata)
     const line_items = items.map((item) => {
+      // Avoid double size in name if variantTitle already includes size
+      let name = item.productTitle;
+      if (item.variantTitle) {
+        name += ` - ${item.variantTitle}`;
+        // Only append size if not already in variantTitle
+        if (!item.variantTitle.toLowerCase().includes(item.size?.toLowerCase?.() || "")) {
+          name += item.size ? ` (${item.size})` : "";
+        }
+      } else {
+        name += item.size ? ` (${item.size})` : "";
+      }
       return {
         price_data: {
           currency: "usd",
           product_data: {
-            name: item.productTitle + " - " + item.variantTitle,
-            description: item.description,
-            images: [item.image],
+            name,
+            images: item.image ? [item.image] : [],
             metadata: {
-              printify_product_id: item.productId,
-              printify_variant_id: item.variantId,
-              size: item.size,
+              productId: item.productId,
+              variantId: item.variantId,
               color: item.color,
+              size: item.size,
             },
           },
           unit_amount: item.price, // cents
