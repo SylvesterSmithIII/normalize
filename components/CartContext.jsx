@@ -24,32 +24,48 @@ export function CartProvider({ children }) {
     localStorage.setItem('cart:v1', JSON.stringify(cartItems));
   }, [cartItems, hydrated]);
 
-  const match = (a, id, size) =>
-    String(a.id) === String(id) && String(a.size ?? '') === String(size ?? '');
+  // Create a stable composite key for each cart line: productId::variantId::size
+  const makeKey = (productId, variantId, size) => `${productId ?? ''}::${variantId ?? ''}::${size ?? ''}`;
+
+  // Match by composite key when available, otherwise try legacy id+size matching
+  const match = (a, keyOrId, size) => {
+    // If caller passed a composite key, compare by key
+    if (typeof keyOrId === 'string' && keyOrId.includes('::')) {
+      return a.key === keyOrId;
+    }
+    // Otherwise, compute incoming key from productId/variantId and size
+    const incomingKey = makeKey(keyOrId, '', size);
+    if (a.key) return a.key === incomingKey || a.key.includes(String(keyOrId));
+    const aIds = [a.variantId, a.productId, a.id].filter(Boolean).map(String);
+    const bId = String(keyOrId ?? '');
+    return aIds.includes(bId) && String(a.size ?? '') === String(size ?? '');
+  };
 
   const addToCart = (item) => {
     setCartItems((prev) => {
-      const idx = prev.findIndex((p) => match(p, item.id, item.size));
+      const incomingProductId = item.productId ?? item.id ?? '';
+      const incomingVariantId = item.variantId ?? '';
+      const incomingKey = makeKey(incomingProductId, incomingVariantId, item.size);
+
+      const idx = prev.findIndex((p) => p.key === incomingKey || match(p, incomingVariantId, item.size) || match(p, incomingProductId, item.size));
       if (idx >= 0) {
         const copy = [...prev];
         copy[idx] = { ...copy[idx], quantity: copy[idx].quantity + item.quantity };
         return copy;
       }
-      return [...prev, { ...item, quantity: Math.max(1, item.quantity) }];
+      // attach key to new item for reliable future matching
+      return [...prev, { ...item, quantity: Math.max(1, item.quantity), key: incomingKey }];
     });
   };
 
   // 🔑 absolute quantity (what your CartDrawer calls)
-  const updateQuantity = (id, size, newQty) => {
-    setCartItems((prev) =>
-      prev.map((i) =>
-        match(i, id, size) ? { ...i, quantity: Math.max(1, newQty) } : i
-      )
-    );
+  // Update/remove operate on composite key (generated at add time)
+  const updateQuantity = (key, newQty) => {
+    setCartItems((prev) => prev.map((i) => (i.key === key ? { ...i, quantity: Math.max(1, newQty) } : i)));
   };
 
-  const removeFromCart = (id, size) => {
-    setCartItems((prev) => prev.filter((i) => !match(i, id, size)));
+  const removeFromCart = (key) => {
+    setCartItems((prev) => prev.filter((i) => i.key !== key));
   };
 
   const clearCart = () => setCartItems([]);

@@ -13,6 +13,7 @@ const alexBrush = Alex_Brush({
 
 export default function Nav() {
   const { cartItems, setIsOpen } = useCart();
+  const totalUnits = cartItems.reduce((acc, i) => acc + (Number(i.quantity) || 0), 0);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -47,9 +48,9 @@ export default function Nav() {
         className="relative hover:text-yellow-300 transition lg:hidden"
       >
         <ShoppingCart size={28} className="lg:hidden" />
-        {cartItems.length > 0 && (
+        {totalUnits > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-black lg:text-white w-5 h-5 text-xs flex items-center justify-center rounded-full">
-            {cartItems.length}
+            {totalUnits}
           </span>
         )}
       </button>
@@ -64,9 +65,9 @@ export default function Nav() {
           className="relative px-4 py-2 rounded hover:bg-white hover:text-black transition-colors"
         >
           <ShoppingCart size={28} />
-          {cartItems.length > 0 && (
+          {totalUnits > 0 && (
             <span className="absolute -top-2 -right-2 bg-red-500 text-white w-5 h-5 text-xs flex items-center justify-center rounded-full">
-              {cartItems.length}
+              {totalUnits}
             </span>
           )}
         </button>

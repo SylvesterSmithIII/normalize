@@ -13,8 +13,8 @@ export default function CartDrawer() {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
 
-  // Calculate subtotal
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  // Calculate subtotal (price in cents)
+  const subtotal = cartItems.reduce((acc, item) => acc + Number(item.price || 0) * Number(item.quantity || 0), 0);
 
   // Shipping logic
   const shippingRates = {
@@ -22,9 +22,10 @@ export default function CartDrawer() {
     economy: { first: 3.99, additional: 2.09 },
   };
 
-  const shipping = cartItems.length > 0
-    ? shippingRates[shippingMethod].first +
-      shippingRates[shippingMethod].additional * (cartItems.length - 1)
+  // Shipping should consider total items (quantity), charging `first` for first item and `additional` for each additional unit
+  const totalUnits = cartItems.reduce((acc, i) => acc + (Number(i.quantity) || 0), 0);
+  const shipping = totalUnits > 0
+    ? shippingRates[shippingMethod].first + shippingRates[shippingMethod].additional * Math.max(0, totalUnits - 1)
     : 0;
 
   const total = subtotal / 100 + shipping; // assuming price is in cents
@@ -102,8 +103,8 @@ export default function CartDrawer() {
           {cartItems.length === 0 ? (
             <p>Your cart is empty</p>
           ) : (
-            cartItems.map((item, idx) => (
-              <div key={idx} className="flex justify-between items-center border-b pb-2">
+            cartItems.map((item) => (
+              <div key={item.key ?? `${item.variantId ?? item.productId ?? item.productTitle}-${item.size || ''}`} className="flex justify-between items-center border-b pb-2">
                 <div className="flex items-center gap-3">
                   {item.image && (
                     <img src={item.image} alt={item.productTitle} className="w-14 h-14 object-cover rounded border" />
@@ -114,20 +115,20 @@ export default function CartDrawer() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                   <button
-                    onClick={() => updateQuantity(item.productId, item.size, Math.max(1, item.quantity - 1))}
+                    onClick={() => updateQuantity(item.key, Math.max(1, item.quantity - 1))}
                     className="px-2 py-1 border-2 border-black rounded-none hover:bg-black hover:text-white"
                   >–</button>
                   <span>{item.quantity}</span>
                   <button
-                    onClick={() => updateQuantity(item.productId, item.size, item.quantity + 1)}
+                    onClick={() => updateQuantity(item.key, item.quantity + 1)}
                     className="px-2 py-1 border-2 border-black rounded-none hover:bg-black hover:text-white"
                   >+</button>
                 </div>
 
                 <button
-                  onClick={() => removeFromCart(item.productId, item.size)}
+                  onClick={() => removeFromCart(item.key)}
                   className="ml-2 text-red-500 font-bold"
                 >
                   ×
